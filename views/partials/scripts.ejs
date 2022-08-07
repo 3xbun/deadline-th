@@ -27,13 +27,14 @@
             const payload = ref([]);
 
             const ans = () => {
+                payload.value.push(answer.value);
+                answer.value = "";
+
                 const question = document.querySelector("#question")
                 question.classList.remove("animate__fadeIn")
                 question.classList.add("animate__fadeOut")
                 question.addEventListener('animationend', () => {
                     step.value += 1;
-                    payload.value.push(answer.value);
-                    answer.value = "";
 
                     question.classList.remove("animate__fadeOut")
                     question.classList.add("animate__fadeIn")
