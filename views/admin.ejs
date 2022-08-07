@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/head"); %>
+</head>
+
+<body>
+    <header>
+        <img src="https://download.logo.wine/logo/Deadline_Hollywood/Deadline_Hollywood-Logo.wine.png"
+            alt="deadline-logo" class="logo" />
+    </header>
+    <main>
+        <div id="app">
+            <div class="container">
+                {{msg}}
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+    <script>
+        const { createApp, ref } = Vue
+
+        createApp({
+            setup() {
+                const msg = ref("asd")
+
+                return {
+                    msg
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

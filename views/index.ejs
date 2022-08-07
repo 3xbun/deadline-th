@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/head"); %>
+</head>
+
+<body>
+    <header>
+        <img src="https://download.logo.wine/logo/Deadline_Hollywood/Deadline_Hollywood-Logo.wine.png"
+            alt="deadline-logo" class="logo" />
+    </header>
+    <main>
+        <div id="app">
+            <div class="container">
+                <div class="main" v-if="step < 12">
+                    <div id="question" class="animate__animated">
+                        <div class="question animate__animated animate__fadeIn">
+                            <p>{{ questions[step] }}</p>
+                        </div>
+                    </div>
+                    <input type="text" class="answerInput" v-model="answer" @keyup.enter="ans()" />
+                    <br />
+                    <button type="submit" @click="ans()">ตอบ</button>
+                    <br />
+                </div>
+
+                <div class="end" v-else>
+                    <p>ขอบคุณ</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <%- include("./partials/scripts"); %>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+    const { createApp, ref } = Vue
+
+    createApp({
+        setup() {
+            const questions = ref([
+                "ชีวิตช่วงนี้เป็นยังไงบ้าง? (ถ้านึกไม่ออกเอาแค่ความรู้สึกของวันนี้ก็ได้นะ) ...วันนี้เป็นยังไงบ้าง? :)",
+                "มีเรื่องดี ๆ ที่อยากเล่าให้ใครฟังไหม? (แชร์ให้ฟังสั้นๆ ก็ได้นะ)",
+                "ถ้าให้มองเรื่องดีเรื่องนี้ เป็นความสุข คิดว่าระดับความสุขของตัวเองอยู่ที่เลขไหน? (1-10)",
+                "แล้วเรื่องราวแย่ๆ หละ มีอะไรอยากแชร์ไหม? (แชร์เรื่อง Suffer ล่าสุดในชีวิตก็ได้นะ)",
+                "แล้วถ้าให้มองเรื่องแย่นี้ เป็นความทุกข์ คิดว่าระดับความทุกข์อยู่ที่เลขไหน? (1-10)",
+                "ปกติเวลาเจอปัญหาแบบนี้ จัดการกับมันยังไงให้ความรู้สึกโอเคขึ้น มีเทคนิคไหม?",
+                "ถ้าในระยะยาว คิดว่าเทคนิคนี้ช่วยแก้ไขปัญหาได้ไหม?",
+                'เคยจดบันทึกความรู้สึก หรือ "คุยกับตัวเอง" บ้างเปล่า?',
+                "ถ้าเคย ปกติคุยกับตัวเองยังไง แชร์เทคนิคให้ฟังสั้นๆ อีกได้ไหม",
+                "ถ้าจะบอกว่า วันนี้เรามีเทคโนโลยีการจดบันทึก ที่ทำให้คุณได้คุยกับตัวเอง ทำให้ตัวคุณเอง เป็นเพื่อนคู่คิดที่ดีให้กับตัวเองได้ แบบเวลามีปัญหาอะไรเข้ามา สามารถปรึกษาตัวเองได้เลย คุณจะสนใจไหม? เพราะอะไร?",
+                "ฟังแล้วคิดว่าพอจะช่วยแก้ปัญหาที่คุณมีอยู่ตอนนี้ได้ไหม?",
+                "แต่วิธีนี้ต้องอาศัยวินัยในการจดบันทึก คุยกับตัวเองบ่อยๆ หน่อยนะ คิดว่าไหวไหม?",
+                "อ่ะถ้ายังไม่เห็นภาพ อยากให้ลองเริ่มคุยกับตัวเองสั้นๆ วันนี้ก่อน เริ่มจากคำถามนี้... ขอ 1 ประโยคที่อยากบอกตัวเองในวันพรุ่งนี้สักหน่อย?",
+            ]);
+            const step = ref(0);
+            const answer = ref("");
+
+            const payload = ref([]);
+
+            const ans = () => {
+                const question = document.querySelector("#question")
+                question.classList.remove("animate__fadeIn")
+                question.classList.add("animate__fadeOut")
+                question.addEventListener('animationend', () => {
+                    step.value += 1;
+                    payload.value.push(answer.value);
+                    answer.value = "";
+
+                    question.classList.remove("animate__fadeOut")
+                    question.classList.add("animate__fadeIn")
+
+                    if (step.value == 12) {
+                        axios.post("https://deadline-th.herokuapp.com/", payload.value).then(function (response) {
+                            console.log(response);
+                        })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
+                }, { once: true });
+
+
+                if (step.value == 1) {
+                    console.log("first")
+                    axios.post("https://thin-colts-hug-124-122-51-163.loca.lt/", payload.value).then(function (response) {
+                        console.log(response);
+                    })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            };
+
+            return {
+                questions,
+                step,
+                answer,
+                payload,
+                ans
+            }
+        }
+    }).mount('#app')
+</script>
