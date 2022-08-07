@@ -28,6 +28,7 @@
         width: 85vw;
         margin: auto;
         text-align: center;
+        max-width: 800px
     }
 
     #question {
@@ -38,22 +39,28 @@
     }
 
     .question {
-        font-size: 3em;
+        font-size: 2.5em;
         text-align: left;
     }
 
     .answerInput {
         width: 85%;
-        font-size: 2em;
+        font-size: 1.5em;
         padding: 0.5em;
         margin: 1em;
     }
 
     button {
-        font-size: 2em;
+        font-size: 1.5em;
         padding: 0.25em 1em;
         cursor: pointer;
         background-color: white;
         border-radius: 1em;
+    }
+
+    @media only screen and (max-width: 750px) {
+        body {
+            font-size: 10px;
+        }
     }
 </style>
