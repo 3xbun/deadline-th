@@ -6,11 +6,21 @@
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
 
+    :root {
+        --animate-duration: 2s;
+    }
+
     * {
         padding: 0;
         margin: 0;
         box-sizing: border-box;
         font-family: "Kanit", sans-serif;
+        transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    body {
+        background-color: black;
+        color: white;
     }
 
     header {
@@ -46,8 +56,10 @@
     .answerInput {
         width: 85%;
         font-size: 1.5em;
-        padding: 0.5em;
+        padding: .25em 0.5em;
         margin: 1em;
+        border-radius: 1em;
+        border: none;
     }
 
     button {
