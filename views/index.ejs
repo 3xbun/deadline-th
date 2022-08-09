@@ -13,11 +13,9 @@
     <main>
         <div id="app">
             <div class="container">
-                <div class="main" v-if="step < 12">
-                    <div id="question" class="animate__animated">
-                        <div class="question animate__animated animate__fadeIn">
-                            <p>{{ questions[step] }}</p>
-                        </div>
+                <div v-if="step < 12" id="question" class=" main animate__animated animate__fadeIn">
+                    <div class="question">
+                        <p>{{ questions[step] }}</p>
                     </div>
                     <input type="text" class="answerInput" v-model="answer" @keyup.enter="ans()" />
                     <br />
