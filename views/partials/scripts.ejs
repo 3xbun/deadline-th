@@ -24,10 +24,25 @@
             const step = ref(0);
             const answer = ref("");
 
-            const payload = ref([]);
+            const payload = ref({
+                q1: "",
+                q2: "",
+                q3: "",
+                q4: "",
+                q5: "",
+                q6: "",
+                q7: "",
+                q8: "",
+                q9: "",
+                q10: "",
+                q11: "",
+                q12: "",
+            });
 
             const ans = () => {
-                payload.value.push(answer.value);
+                const q = "q" + (step.value + 1);
+                console.log(q)
+                payload.value[q] = answer.value
                 answer.value = "";
 
                 const question = document.querySelector("#question")
@@ -40,7 +55,7 @@
                     question.classList.add("animate__fadeIn")
 
                     if (step.value == 12) {
-                        axios.post("https://deadline-th.herokuapp.com/", payload.value).then(function (response) {
+                        axios.post("/api/answers", payload.value).then(function (response) {
                             console.log(response);
                         })
                             .catch(function (error) {
